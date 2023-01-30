@@ -157,3 +157,38 @@ IAM Security Tools:
 
 ## Section 5 : EC2 - Elastic Compute Cloud
 
+Amazon EC2:
+
+1. EC2 is one of the most popular of AWS offering
+2. EC2 = Elastic Compute Cloud = Infrastructure as a Service
+3. It mainly consists in the capability of:
+    - Renting virtual machines (EC2)
+    - Storing data on virtual drives (EBS)
+    - Distributing load across machines (ELB)
+    - Scaling the services using an auto-scaling group (ASG)
+4. Knowing EC2 is fundamental to understand how the Cloud works
+
+EC2 sizing & configuration options:
+
+1. OS can be Lunux Windows or MAC OS
+2. CPU
+3. RAM
+4. Storage
+    - Network attached (EBS & EFS)
+    - hardware (EC2 instance Store)
+5. Network card: speed of the card, Public IP address
+6. Firewall rules: security group
+7. Bootstrap script (configure at first launch): EC2 User Data
+
+EC2 User Data
+
+1. It's possible to bootstrap our instances using an EC2 User data script
+2. bootstrapping means launching commands when a machine start
+3. That script is only run once at the instance first start
+4. EC2 user data is used to automate boot tasks such as:
+    - Installing software
+    - Installing updates
+    - Downloading common files from the internet
+    - Anything you can think of
+5. The EC2 User Data Script runs with the root user
+
