@@ -192,3 +192,197 @@ EC2 User Data
     - Anything you can think of
 5. The EC2 User Data Script runs with the root user
 
+EC2 Instance Types - Overview naming convention
+
+1. m: instance class
+2. 5: generation
+3. xlarge: size within the instance class
+
+EC2 Istance Types :
+
+1. General purpose
+    - Great for a diversity of workloads such as web servers or code repositories
+    - Balance between Compute/Memory/Network
+    - Example : t2.micro
+
+2. Compute optimized
+    - Great for CPU intensive workloads such as batch processing, video encoding, high performance web servers, Machine learning, etc
+    - High CPU to RAM ratio
+    - Example : c5.large
+
+3. Memory optimized
+    - Fast perfomance for workloads that process large data sets in memory
+    - Great for memory intensive workloads such as in-memory databases, distributed caches, etc
+    - High RAM to CPU ratio
+    - Example : r5.xlarge
+
+4. Accelerated computing
+    - Great for graphics intensive workloads such as 3D visualisation, video transcoding, etc
+    - High CPU to RAM ratio
+    - Example : g4dn.xlarge
+
+5. Storage optimized
+    - Great for large data set workloads such as data warehousing, log processing, etc
+    - Usecases inclues : High frequency online transaction processing, Relational or NoSQL databases, Cache, Distributed file systems, etc
+    - High disk throughput
+    - Example : i3.xlarge
+
+Table of comparaison : 
+
+| Instance Type | vCPU | MEM (Gib) | Storage | Network Performance | EBS Bandwidth | 
+| :--- | :---: | :---: | :---: | :---: | :---: |
+| t2.micro | 1 | 1 | EBS only | Low to Moderate | Up to 500 Mbps |
+| t2.xlarge | 4 | 16 | EBS only | Low to Moderate | Up to 500 Mbps |
+| c5d.4xlarge | 16 | 32 | 1 x 400 Gib SSD | Moderate | 4,750 |
+| r5.16xlarge | 64 | 512 | EBS only | 20 Gigabit | 13,600 Mbps |
+| m5.8xlarge | 32 | 128 | EBS only | 10 Gigabit | 6,800 Mbps |
+
+Security Groups : 
+
+1. Security groups are the fundamental of network security in AWS
+2. They control the traffic for one or more EC2 instances
+3. Security groups only contain allow rules
+4. Security groups can reference by IP or by security group
+5. Acting as a virtual firewall for your instance to control inbound and outbound traffic
+6. They regulate :
+    - Access to ports
+    - Access to protocols
+    - Authorised IP ranges
+    - Control of network traffic
+    
+
+Security Groups - Good to know
+
+1. Can be attached to multiple EC2 instances
+2. Locked down to a region/VPC combination
+3. Does live outside the EC2 instance
+4. It's goot to maintain one seperate security group for SSH access
+5. If your application is not accessible (timeout), check your security group rules
+6. Inbound traffic is blocked by default
+7. Outbound traffic is allowed by default
+8. Can reference other security groups
+
+Classic Ports to know:
+
+1. Port 22 : SSH (Secure Shell) - log into a Linux instance
+2. Port 21 : FTP (File Transfer Protocol) - transfer files between computers
+3. Port 80 : HTTP (Hypertext Transfer Protocol) - web traffic
+4. Port 443 : HTTPS (HTTP Secure) - secure web traffic
+5. Port 22 : SFTP (Secure File Transfer Protocol) - upload files into a file share
+6. Port 3389 : RDP (Remote Desktop Protocol) - log into a Windows instance
+
+EC2 Instance Purchasing Options:
+
+1. On demand
+    - Pay for what you use
+    - Short workloads, predictable pricing
+
+2. Reserved
+    - Up to 75% off on-demand
+    - Long workloads, steady state or predictable usage
+    - You can reserve instances for 1 or 3 years
+    - You can make partial upfront, all upfront or no upfront payments
+    - You can choose between standard or convertible reserved instances
+
+3. Savings Plans
+    - Commit to a consistent amount of usage
+    - Long workloads
+    - You can save up to 72% compared to on demand (Commit to USD per month)
+
+4. EC2 Spot Instances
+    - Can be up to 90% cheaper than on demand
+    - Bid for unused EC2 capacity
+    - Great for flexible start and end times or for applications that are only feasible at very low compute prices
+    - You can lose your instance at any time
+    - NOT SUITED FOR CRITICAL APPLICATIONS OR DATABASES
+
+5. Dedicated Hosts
+    - Physical EC2 server dedicated for your use
+    - Great for regulatory requirements or licensing that does not support multi-tenancy
+    - Purchasing options = On demand or Reservation
+    - The most expensive EC2 purchasing option
+    - Useful for licensing that have complicated licensing models (BYOL)
+    - Or for companies that have strong regulatory or compliance needs
+
+6. Dedicated Instances
+    - EC2 instance on a physical server dedicated for your use
+    - May share hardware with other instances in same account
+    - No control over instance placement 
+
+7. Capacity Reservations
+    - Reserve capacity for your AWS account
+    - Great for applications that have specific capacity requirements
+    - Suitable for short term uninterrupted workloads that needs to be in a specific AZ
+
+## Section 6: EC2 Instance Storage
+
+EBS - Elastic Block Store
+
+1. EBS is a network drive that can be attached to one or more EC2 instances
+2. Can be mounted to one instance at a time
+3. They are bound to a specific AZ
+4. It's a network drive, so it's slower than an instance store
+5. Have a provisioned Capacity (size)
+
+EBS Snapshots
+
+1. Make a backup of your EBS volume
+2. Not necesssary to detach the volume from the instance (but recommended)
+3. Can copy snapshots across AZ and regions
+4. Features :
+    - Move to archive tier that is 75% cheaper (24h to restore the snapshot)
+    - Setup rules to retain deleted snapshots
+    - Specify retention period (from a day to a year)
+
+AMI Overview
+
+1. AMI stands for Amazon Machine Image
+2. It's a template for your EC2 instance (OS, Application, Permissions, etc)
+3. AMI are build for a specific region
+4. You can launch EC2 instances from :
+    - Public AMI
+    - Private AMI
+    - Marketplace AMI (AWS Marketplace)
+
+EC2 Image builder
+
+1. It's a service that makes it easy to create, secure and manage custom AMI
+2. Can be run on a schedule
+3. Free service
+
+EC2 Instance Store
+
+1. EBS Volumes are network drives with good but limited performance
+2. EC2 Instance Store are physical drives attached to the host
+3. EC2 Instance Store lose their storage when the instance is stopped
+4. Good for buffer/cache/temporary storage
+5. Not a good choice for databases
+
+EFS - Elastic File System
+
+1. EFS is a network file system that can be mounted on multiple EC2 instances
+2. EFS works with Linux EC2 instances in multiple AZ
+3. Highly available, scalable, expensive (3x gp2), pay per use, no capacity planning
+
+EFS Infrequent Access (EFS IA)
+
+1. Storage cost optimised for files not accessed every day
+2. Up to 20% cheaper than EFS
+3. EFS will automatically move files to IA after 60 days of inactivity (need to enable lifecycle policy)
+
+Amazon FSx - Overview
+
+1. Launch 3rd party file systems on AWS (fully managed service)
+2. Built on Windows File Server
+3. Supports SMB and NTFS  
+4. Integrated with Active Directory
+
+Amazon FSx for Lustre
+
+1. For High Performance Computing (HPC)
+2. Linux based
+3. Machine Learning, Analytics, Video Rendering, etc
+4. Scales up to 100s of GB/s and millions of IOPS
+
+## Section 7: ELB & ASG - Elastic Load Balancer & Auto Scaling Group
+
