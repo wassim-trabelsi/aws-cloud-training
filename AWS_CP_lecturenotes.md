@@ -386,3 +386,51 @@ Amazon FSx for Lustre
 
 ## Section 7: ELB & ASG - Elastic Load Balancer & Auto Scaling Group
 
+High Availability
+
+1. High Availability usually goes hand in hand with horizontal scaling
+2. High Availability means running your application in multiple AZ
+3. The goal is to have your application running in multiple AZ in case one AZ goes down (disaster)
+
+High Availability & Scalability for EC2
+
+1. Vertical Scaling : Scale up your EC2 instance = Increase the size of your EC2 instance
+    - From : t2.nano - 0.5 Go RAM - 1 CPU
+    - To : u-12tb1.metal - 12.3 TB of RAM -  448 CPU
+
+2. Horizontal Scaling : Scale out your EC2 instance = Add more EC2 instances
+    - Auto Scaling Group
+    - Load Balancer
+
+3. High Availability : Run your application in multiple AZ
+    - Multi AZ
+    - Load Balancer
+
+Formal definitions :
+
+1. Scalability : The ability to accommodate a larger load by making the hardware stronger (scale up), or by adding nodes (scale out)
+
+2. Elasticity : Once you have a scalable system, elasticity means that there will be some 'auto-scaling' mechanism that will automatically scale up or down based on the load
+
+3. Agility : New IT Ressources are only a click away
+
+Load Balancer:
+
+1. Load balancers are servers that forward internet traffic to multiple EC2 instances downstream
+2. Why to use ? :
+    - Spread load across multiple downstram instances
+    - Expose a single point of access (DNS) to your application
+    - Seamlessly handle failures of downstream instances
+    - Do regular health checks on downstream instances
+    - Provide SSL termination for your website
+    - High availability across multiple AZ
+3. An ELB is a managed load balancer:
+    - AWS guarantees that it will work
+    - AWS takes care of upgrades, maintenance, high availability, etc
+    - AWS provides only a few configuration knobs
+4. It cost less to setup your own load balancer (NGINX, HAProxy, etc) but you have to manage it yourself
+5. 4 types of load balancers :
+    - Application Load Balancer (HTTP/HTTPS/gRPC) -- Static DNS (URL) (Layer 7)
+    - Network Load Balancer (ultra high performance, allow for TCP) -- Static IP through Elastic IP (Layer 4)
+    - Classic Load Balancer (Layer 4)
+    - Gateway Load Balancer -- GENEVE Protocol on IP Packets ; Route Traffic to Firewalls ; Intrusion detection(Layer 3)
