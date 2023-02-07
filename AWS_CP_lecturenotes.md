@@ -434,3 +434,123 @@ Load Balancer:
     - Network Load Balancer (ultra high performance, allow for TCP) -- Static IP through Elastic IP (Layer 4)
     - Classic Load Balancer (Layer 4)
     - Gateway Load Balancer -- GENEVE Protocol on IP Packets ; Route Traffic to Firewalls ; Intrusion detection(Layer 3)
+
+Auto Scaling Group : 
+
+1. In real live, the load can change
+2. In the cloud, you can get rid of servers very quickly
+3. The goal of an Auto Scaling Group (ASG) is to:
+    - Scale out
+    - Scale in
+    - Ensure we have a minimum and a maximum of machines running
+    - Automatically register new instances to a load balancer
+    - Replace unhealthy instances
+4. Huge Cost Savings
+
+Auto Scaling Group Strategies : 
+
+1. Manual Scaling (Update manually)
+2. Dynamic Scaling
+    -  Simple / Step Scaling : When a cloud watch alarm is triggered (ex. CPU > 70%)
+3. Target Tracking Scaling
+    - Example : I want the average ASG CPU to stay at around 40%
+4. Scheduled Scaling
+    - Anticipate a scaling based on known usage patterns
+    - Example increast the min capacity
+5. Predictive Scaling : Based on Machine Learning
+
+
+## Section 8 : Amazon S3
+
+S3 Use cases :
+1. Backup & Storage
+2. Disaster Recovery
+3. Archive
+4. Hybrid Cloud Storage
+5. Application hosting
+6. Media hosting
+7. Data lakes & big data analytics
+8. Software delivery
+9. Static website
+
+S3 - Buckets:
+
+1. Amazon S3 allows peoples to store objects (files) in "buckets" (directory)
+2. Buckets must have a globally unique name (across all regions all accounts)
+3. Buckets are defined at a region level
+4. S3 looks like a global service but buckets are created in a region
+5. Naming convention : 
+    - No uppercase, No underscore
+    - 3-63 char long
+    - not an ip
+    - Must start with lowercase letter or number
+    - NOT START WITH (xn--)
+    - NOT END WITH (-s3alias)
+
+S3 - Objects : 
+
+1. Key = FULL PATH :
+    - s3://my-bucket/my_file.txt
+    - s3://my-bucket/my_folder1/another_folder/my_file.txt
+
+2. The key is composed of prefix (my_folder1/another_folder/) + object name (my_file.txt)
+
+3. There is no concept of "directories" within buckets (although the UI will trick you yo think otherwise)
+
+4. Just keys with very long names that contain slashes
+
+Amazon S3 - Objects (cont.):
+
+1. Object values are the content of the body:
+    - Max. Object Size is 5TB
+    - If uploading more than 5GB - use multi part upload
+2. Metadata (list of text key / value pairs - system or user metadata)
+3. Tags (Unicode key / value pair - up to 10) - useful for security / lifecycle
+4. Version ID (if versioning is enabled)
+
+Amazon S3 - Security :
+
+1. User-Based:
+    - IAM Policies - which API calls should be allowed for a specific user from IAM
+
+2. Resource-Based
+    - Bucket Policies - bucket wide rules from the S3 console - allows cross account
+    - Object Access Control List (ACL) - finer grain
+    - Bucket Access Control List (ACL) - less common (can be disabled)
+
+3. Note: an IAM principal can access an S3 object if 
+    - The user IAM permissions allow it OR the resoure policy ALLOWS it
+    - AND no explicit DENY
+
+4. Encryption: encrypt objects in Amazon S3 using encryption keys
+
+S3 Bucket Policies : 
+
+1. JSON based policies
+    - Resources: buckets and objects
+    - Effect: Allow/Deny
+    - Actions: Set of API to Allow or Deny
+    - Principal: The account or user to apply the policy to
+
+2. Use S3 bucket for policy to: 
+    - Grant public access to the bucket
+    - Force objects to be encrypted at upload
+    - Grant access to another account (Cross Account)
+
+Amazon S3 - Static Website Hosting
+
+1. S3 can host static websites and have them accessible on the Internet
+2. The website URL will be http://bucket-name.s3-website-aws-region.amazonaws.com
+
+Amazon S3 - Versioning 
+
+1. You can version your file in Amazon S3
+2. It's enabled at the bucket level
+3. Same key overwrite will change the "version": 1 2 3
+4. It's best practice to version your bucket:
+    - Protect against unintended delete
+    - Easy rollback
+5. Notes: 
+    - Any file that is not versioned prior to enabling versioning will have a version "null"
+    - Suspending versioning doesn't delete the previous versions
+    
