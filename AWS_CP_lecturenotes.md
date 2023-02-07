@@ -553,4 +553,180 @@ Amazon S3 - Versioning
 5. Notes: 
     - Any file that is not versioned prior to enabling versioning will have a version "null"
     - Suspending versioning doesn't delete the previous versions
-    
+
+Amazon S3 - Replication (CRR & SRR) --> Want to setup an asynchronous replication
+
+1. Must enable Versioning in source and destination buckets
+2. Cross Region Replication (CRR)
+    - Asynchronous replication
+    - Can replicate to another account
+3. Same Region Replication (SRR)
+    - Synchronous replication
+4. Must give IAM permissions to S3 service
+
+Use cases: 
+
+1. CRR - compliance, lower latency, replication across accounts
+2. SRR - log aggregation, live replication between dev and prod
+
+S3 Storage Classes :
+
+1. S3 Standard - General Purpose
+    - 99.99% availability
+    - Used for frequently accessed data
+    - Low latency
+    - Sustainable 2 concurrent facility failure
+    - Uses cases : Big Data Analytics, mobile & gaming app, Content Distribution, 
+2. S3 Standard - Standard-Infrequent Access (IA)
+    - For data that is less frequently accessed
+    - Lower cost than S3 Standard
+    - 99.9% availability
+    - Uses cases : Backup, Disaster Recovery
+3. S3 One Zone - IA
+    - High durability 99.999999999% (11 9's) in a single AZ; data is lost when AZ is destroyed
+    - 99.5% availability
+    - Use Cases : Storing secondary backup copies of on-premises data
+4. S3 Glacier Instant Retrieval
+    - Low cost object storage
+    - Pay for storage and retrieval cost
+    - Millisecond retrieval
+    - Minimum storage duration of 90 days
+5. S3 Glacier Flexible Retrieval
+    - Expedited (1-5 minutes), Standard (3-5 hours), Bulk (5-12 hours) - free
+    - Minimum storage duration of 90 days
+6. S3 Glacier Deep Archive
+    - Long term storage
+    - Standard (12 hours), Bulk (48 hours)
+    - Minimum storage duration of 180 days
+7. S3 Intelligent Tiering
+    - Small monthly monitoring and auto-tiering fee
+    - Moves objects automatically between Access Tier based on usage
+    - There are no retrieval charges in S3 Intelligent Tiering
+
+
+Can move between classes manually or using S3 Lifecycle configurations
+
+Durability and Availability :
+
+1. Durability:
+    - High durability - 99.999999999% (11 9's)
+    - Data is stored in 3 AZ
+    - If you store 10.000.000 objects == 1 Loss in 10.000years
+    - Same for all storage classes
+2. Availability:
+    - Measures how readily available a service is
+    - Varies depending on storage class
+    - S3 Standard - 99.99% (4 9's) = Not available 53 minutes per year
+
+S3 Encryption :
+
+1. Server Side Encryption (SSE-S3)
+    - Managed by Amazon S3
+    - AES-256 encryption
+    - Key is managed by Amazon S3
+    - S3 Managed Keys (SSE-S3)
+
+2. Client Side Encryption (SSE-C)
+    - Managed by the customer
+    - Client encrypts the data
+
+
+AWS Snow Family = Offline devices to perform data migration
+
+1. Highly-secure, portable storage devices to collect and process data at the edge, and migrate data into and out of AWS
+2. Data migration:
+    - Snowcone
+    - Snowmobile
+    - Snowball Edge
+        - 80TB (or 42) of HDD capacity for block volume
+3. Edge computing:
+    - Snowcone
+    - Snowball Edge
+4. OpsHub - Management console for Snowball Family
+
+Hybrid Cloud Storage:
+
+Use AWS Storage Gateway to connect on-premises applications to cloud-based storage
+
+## Section 9: Databases & Analytics
+
+Services:
+1. RDS (Relational Database Service)
+    - Suited for OLTP (Online Transaction Processing)
+
+2. Aurora
+    - MySQL and PostgreSQL compatible
+    - 5x faster than MySQL
+    - 3 copies of data across 3 AZ
+3. ElastiCache
+    - Get managed Redis or Memcached
+    - In-memory cache
+4. DynamoDB
+    - NoSQL family (Json, Key-Value, Document, Wide Column)
+    - Tables can be global
+    - Exclusive feature DAX (DynamoDB Accelerator)
+5. Redshift
+    - Based on PostgreSQL
+    - Columnar storage
+    - Massively Parallel Processing (MPP)
+    - Data Warehouse
+    - Load the data 10x faster
+6. Neptune
+    - Graph Database
+7. DocumentDB
+    - MongoDB compatible
+    - Fast, scalable, highly available
+    - Managed MongoDB
+8. Athena
+    - Serverless interactive query service
+    - Query data in S3 using standard SQL
+    - Pay per query
+9. EMR (Elastic Map Reduce)
+    - Elastic Map Reduce
+    - 100 of EC2 instances
+    - Big Data Analytics
+10. QuickSight
+    - Serverless BI
+11. Glue
+    - Serverless ETL (Extract, Transform, Load) to prepare and load data for analytics
+    - Fully serverless
+    - Glue Data Catalog
+12. QLDB (Quantum Ledger Database)
+    - Centralized ledger for tracking changes to data over time
+    - Immutable, append-only, cryptographically verifiable
+13. Managed Blockchain
+    - Create and manage blockchain networks using open source frameworks
+    - Hyperledger Fabric and Ethereum
+13. DMS (Database Migration Service)
+    - Migrate databases to AWS
+    - Supports on-premises and cloud databases
+    - Supports homogeneous migrations such as Oracle to Oracle
+    - Supports heterogeneous migrations such as Oracle to MySQL
+
+## Section 10: Other Compute Services: ECS, Lambda, Batch, Lightsail
+
+Run Docker containers:
+1. ECS (Elastic Container Service)
+    - You manage the EC2 instances
+2. Fargate
+    - Serverless
+3. ECR (Elastic Container Registry)
+    - Docker container registry = Store the images to run on ECS or Fargate
+
+Lambda:
+1. Serverless compute service
+2. Event driven
+3. Pay per request
+4. Easy to scale
+5. Supports Java, Node.js, Python, C#, Go, PowerShell
+6. CRON jobs
+    - Schedule Lambda functions to run on a schedule
+7. Amazon API Gateway
+    - Create REST APIs
+    - Trigger Lambda functions
+
+
+Amazon Lightsail
+1. Easy alternative to EC2, RDS, ELB, Route53
+2. Virtual server, storage, database, load balancer, DNS ... in the cloud
+
