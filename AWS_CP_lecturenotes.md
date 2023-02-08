@@ -858,3 +858,51 @@ Why Global Application ?:
 ## Section 14: Cloud Monitoring
 
 1. AWS CloudWatch
+    - Metrics for every services
+    - Monitor CPU, memory, network, disk, usd, etc.
+    - Metrics have timestamps
+    - Can create dashboards
+    - Metrics for EC2:  (every 5mins (or 1min if you enable detailed monitoring not free!))
+        - CPUUtilization
+        - Network
+        - StatusCheck
+    - Metrics for EBS:
+        - Disk Read/Writes
+    - Metrics for S3:
+        - BucketSizeBytes
+        - NumberOfObjects
+        - AllRequests
+    - Billing:
+        - Total Estimated Charges
+    - Service Limits:
+        - How much you've been using a service API
+    - Custom Metrics:
+        - You can create your own metrics
+    - Alarms:
+        - You can create alarms based on metrics
+        - You can create SNS topics to be notified when an alarm is triggered
+        - You can create CloudWatch EventBridge to trigger Lambda functions when an alarm is triggered
+2. CloudWatch Logs
+    - CloudWatch Logs can collect logs from:
+        - Elastic Beanstalk
+        - ECS
+        - Lambda
+        - CloudTrail
+        - CloudWatch
+        - Route53 : Log DNS queries
+    - Enable real-time monitoring of logs
+    - Adjustable CloudWatch Logs retention period (1 day to 10 years)
+    - Need to setup a cloudwatch agent on the EC2 instance to push logs toward CloudWatch Logs
+    - CloudWatch log agent can be setup on-premises too
+3. CloudWatch EventBridge
+    - Schedule CRON jobs (scheduled scripts)
+    - Trigger Lambda functions, send SNS messages, etc.
+    - EventBridge can be used to trigger Lambda functions based on CloudWatch alarms
+    - Can recieve events from:
+        - AWS services
+        - Custom applications
+        - SaaS partner applications
+4. AWS CloudTrail
+    - Provides governance, compliance, and operational auditing of your AWS account
+    - CloudTrail is enabled by default
+    - Get an history of events / API calls made within your AWS
