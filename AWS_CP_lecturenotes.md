@@ -726,7 +726,135 @@ Lambda:
     - Trigger Lambda functions
 
 
-Amazon Lightsail
+Amazon Lightsail: 
 1. Easy alternative to EC2, RDS, ELB, Route53
 2. Virtual server, storage, database, load balancer, DNS ... in the cloud
 
+
+## Section 11: Deployment & Managing Infrastructure
+
+1. CloudFormation
+    - It's a declarative way of outlining your infrastructure, for any resources (most of them are supported)
+    - For example within a CloudFormation Templates you can define:
+        - a VPC
+        - a security group
+        - 2 EC2 instances
+        - a Load balancer (ELB) in front of theses machine
+    - Then CloudFormation will create all these resources for you in the right order
+    - Benefits :
+        - Infrastructure as code (No ressources are manually created)
+        - Changes to the infrastructure can be tracked
+        - Cost:
+            - Each resources is tagged with a stack name (easy tracked)
+            - You can do saving strategies (Delete Dev stack between 5PM and 8AM safely)
+        - Productivity:
+            - Ability to destroy and re-create an infrastructure on the cloud on the fly
+            - Automated generation of Diagram for your templates
+            - Declarative programming
+    - Don't re-invent the wheel
+2. AWS Cloud Development Kit (CDK)
+    - Define your cloud infrastucture using familiar programming languages
+3. AWS Elastic Beanstalk
+    - Is a developer centric view of deploying an app
+    - It's a PaaS (Platform as a Service)
+    - Deployment strategy is configurable but performed by EBS
+    - Just the application code is the responsibility of the developer
+    - 3 architecture models:
+        - Single instance (Good for de)
+        - Load balanced (great for production or preprod web app)
+        - Autoscaling (ASG only great for non-web apps in production) (workers, etc.)
+4. AWS CodeDeploy
+    - We want to deploy our application automatically
+    - Works with EC2 Instances
+    - Works with On-Premises Servers
+    - Hybrid service
+    - Servers/Instances must be provisioned and configured ahead of time with CodeDeploy agent
+5. AWS CodeCommit
+    - Github concurrent for AWS
+6. AWS CodeBuild
+    - Code building service in the cloud
+    - Compiles source code, run tests, and produces packages that are ready to be deployed (by CodeDeploy for example)
+7. AWS CodePipeline
+    - Orchestrate the different steps to have the code automatically pushed to production
+    - Basis for CI/CD 
+    - CodeCommit, CodeBuild, CodeDeploy, Elastic Beanstalk
+    - Fully managed and compatible with GitHub
+8. AWS CodeArtifact (Private Package Manager)
+    - pip, npm, maven, nuget, etc.
+9. AWS CodeStar
+    - Project management service (Overview of software development activities in one place)
+    - Quick way to get started to correctly setup CodeCommit, CodeBuild, CodeDeploy, CodePipeline
+10. AWS Cloud9
+    - Cloud IDE
+    - Develop, run, and debug code with just a browser
+11. AWS Systems Manager (SSM)
+    - Helps you manage your EC2 instances at scale
+    - Another Hybrid AWS service
+    - Get operational insights about the state of your infrastructure
+    - Suite of 10+ products:
+        - Do automatic patching and OS updates
+        - Run commands across an entire fleet of servers
+        - Store parameter configuration with the SSM Parameter Store
+    - Works both with Windows and LinuxOS
+    - SSM Session Manager
+        - No SSH required
+        - Can allow a user to connect to an EC2 instance
+12. OpsWorks:
+    - Chef and Puppet
+    - It's an alternative to AWS SSM
+
+## Section 12: Leveraging the AWS Global Infrastructure
+
+Why Global Application ?:
+- Deployed in multiple geographic regions
+- On AWS that could be regions or Edge locations
+- Decreaseds Latency
+- Disaster Recovery
+- Attack protection 
+
+1. Global DNS: Route53
+    - IT'as a managed Domain Name System (DNS) service
+    - Collection of rules that translate human readable domain names into IP addresses
+    - Most common: 
+        - www.google.com -> 12.34.56.76 == A record (IPv4)
+        - www.google.com -> 2001:0db8:85a3:0000:0000:8a2e:0370:7334 == AAAA record (IPv6)
+        - search.google.com -> www.google.com == CNAME record (Alias)
+        - example.com -> www.example.com == Alias
+    - Routing policies:
+        - Simple: Only 1 instance (no health check)
+        - Weighted: Route traffic based on weights
+        - Latency: Route traffic based on lowest latency
+        - Failover: Route traffic based on health checks
+2. Global Content Delivery Network (CDN): CloudFront
+    - Improves read performance, content is cached at the edge
+    - Improves users experience
+    - 216 Points of Presence (PoP) around the world
+    - DDOS protection with WAF And Shield
+    - Enhanced security with OAC (Origin Access Control) for S3 buckets
+    - Custom Origin (HTTP)
+3. S3 Transfer Acceleration
+    - Upload data to S3 over an optimized network path
+4. AWS Global Accelerator
+    - Route traffic to optimal AWS endpoints
+5. AWS Outposts
+    - Amazon on your premises
+6. AWS WaveLength
+    - Bring AWS to the edge of the 5G Network
+7. AWS Local Zones
+    - Place AWS compute Storage and database resources closer to your users
+    - Extend your VPC to more locations
+
+## Section 13: Cloud Integration
+
+1. Amazon SQS (Simple Queue Service)
+    - First service on the cloud
+    - Decouple applications
+    - Asynchronous messaging service
+    - Default retention period: 4 days (max 14 days)
+2. Amazon Kinesis = real-time big data streaming
+3. Amazon SNS = Publication Notification Service
+3. Amazon MQ = Managed Message Broker for RabbitMQ and ActiveMQ
+
+## Section 14: Cloud Monitoring
+
+1. AWS CloudWatch
