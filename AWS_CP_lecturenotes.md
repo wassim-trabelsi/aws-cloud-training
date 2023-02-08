@@ -906,3 +906,40 @@ Why Global Application ?:
     - Provides governance, compliance, and operational auditing of your AWS account
     - CloudTrail is enabled by default
     - Get an history of events / API calls made within your AWS
+    - Send them To CloudWatch Logs or S3
+
+5. X-Ray Overview
+    - Debbuging tool
+    - Visual analysis of our applications
+    - Troubleshooting performance (bottlenecks)
+    - Pinpoint service issues
+
+6. Amazon CodeGuru
+    - ML powered code review
+    - Recommandation about performance, security, reliability, etc.
+    - CodeGuru Profiler
+        - Identify performance bottlenecks
+        - Remove code inefficiencies
+    - CodeGuru Reviewer
+        - Identify security issues
+        - Identify code quality issues
+        - Identify code best practices
+
+7. AWS Health Dashboard
+    - Get notified about AWS service issues
+    - Get notified about AWS service limits
+    - Get notified about AWS service events
+
+8. Personal Health Dashboard
+    - AWS events that affect your infrastructure
+
+## Section 15: VPC
+
+VPC & Subnets Primers
+- VPC = Virtual Private Cloud
+- Subnets allow you to partition your network inside your VPC
+- A public subnet is a subnet that has a route to the internet
+- A private subnet is a subnet that does not have a route to the internet
+- To define access to the internet, you need to define a route table
+
+
