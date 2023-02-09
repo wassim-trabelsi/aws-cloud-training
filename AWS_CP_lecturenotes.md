@@ -942,4 +942,26 @@ VPC & Subnets Primers
 - A private subnet is a subnet that does not have a route to the internet
 - To define access to the internet, you need to define a route table
 
+Internet Gateway helps your VPC to access the internet:
+- NAT Gateway (AWS Managed) & NAT Instance (Self Managed) allow your instance in a private subnet to access the internet while keeping your instance private
+
+1. NACL = Network ACL = First lign of defense:
+    - Can have ALLOW and DENY rules
+    - Are attached at he subnet level
+    - Runes only inclue IP addresses
+    - Stateless: If you allow traffic in, you don't automatically allow traffic out
+2. Security Groups = Second line of defense:
+    - Can have ALLOW rules only
+    - Rules include IP addresses, ports, and protocols
+    - A firewall that controls traffic to and from an EC2 instance
+    - Stateful: If you allow traffic in, you automatically allow traffic out
+
+VPC Flow Logs:
+1. Log about IP traffic going in and out of your interfaces
+    - VPC Flow Logs
+    - Subnet Flow Logs
+    - Elastic Network Interface ENI Flow Logs
+2. Helps you monitor & troubleshoot network issues
+3. Captures network information from AWS managed interfaces too: Elastic Load Balancer, ElastiCache, RDS, etc.
+4. VPC Flow logs data can go to CloudWatch Logs or S3
 
