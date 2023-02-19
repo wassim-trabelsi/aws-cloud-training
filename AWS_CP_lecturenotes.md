@@ -965,3 +965,125 @@ VPC Flow Logs:
 3. Captures network information from AWS managed interfaces too: Elastic Load Balancer, ElastiCache, RDS, etc.
 4. VPC Flow logs data can go to CloudWatch Logs or S3
 
+VPC Peering = Connect two VPCs together:
+1. Make them behave as if they were in the same network
+2. Must not overlapping CIDR (IP address range)
+3. VPC connection is not transitive
+
+VPC Endpoints - Interface & Gateway:
+- Connect your VPC to supported AWS services
+- Private connection between your VPC and the service
+- For S3 and DynamoDB = Gateway
+- For other services = Interface
+
+PrivateLink:
+- Most secure and & scalable way to connect a service to 1000s of VPCs
+- Does not require VPC peering, internet gateway, NAT, route table,...
+
+Require a network load balancer (Service VPC) and ENI (Customer VPC).
+
+= Network Load Balancer (NLB) + ENI (Elastic Network Interface)
+
+Direct Connect & Site to Site VPN:
+1. Connect on-premises network to AWS (goes over the public internet)
+2. Direct Connect (DX) = Establish a dedicated network connection from your premises to AWS (private network) need a month
+3. Needs a CGW (Customer Gateway) and a VGW (Virtual Private Gateway) to connect to your on-premises network
+
+Client VPN:
+1. Privately connect to the client VPN to your private network
+
+Transit Gateway:
+1. For having transitive peering between VPCs ==> Transit Gateway
+2. Avoid complex routing
+3. Works with Direct Connect, VPN Connections, and VPC Peering
+
+## Seection 16: Security
+
+DDoS protection:
+1. Aws Shield Standard
+    - Free
+    - Protecting against network layer 3/4 attacks
+2. AWS Shield Advanced
+    - 24/7 DDoS protection (premium) 3000$/month
+3. AWS WAF
+    - Filter specific requests based on rules (Layer 7) - Rules are based on IP, URL, HTTP headers, etc.
+4. CloudFront and Route53
+    - Availability protection using global edge network
+    - Combiened with AWS Shield, provides attack mitigation at the edge
+
+Penetration testing:
+1. No need prior approval for 8 services:
+    - EC2, Nat Gateway, Elastic Load Balancer
+    - Aurora
+    - API Gateway
+    - RDS
+    - AWS Lambda
+    - Amazon Lightsail
+    - Elastic Beanstalk
+    - CloudFront
+2. Not allowed to:
+    - DNS zone walking via Route53
+    - DoS
+    - Port, protocol, request flooding
+
+For any other simulated events contact AWS support.
+
+Encryption:
+1. Encryption at rest:
+    - On hard disk
+2. Encryption in transit:
+    - On transmission
+
+AWS KMS:
+1. Key Management Service  = AWS managed service
+2. CloudHSM = Hardware Security Module = You manage the encryption keys
+
+AWS Certificate Manager:
+1. Let yout manage SSL/TLS certificates
+
+AWS Secrets Manager:
+1. Store, manage, and retrieve secrets
+
+Artifact:
+1. AWS Artifact = AWS managed service
+2. Store and share documents
+
+Guard Duty:
+1. Threat discorvery to protect your AWS account and workloads
+2. Use machine learning to analyze and identify potential threats
+
+Amazon Inspector:
+1. Analyse known vulnerabilities and recommend fixes (EC2, Container & Lambda)
+
+AWS Config:
+1. Monitor and record your AWS resource configurations = In compliance with defined rules
+
+Macie:
+1. Machine learning based security service
+2. Alert on PII (Personally Identifiable Information) data
+
+AWS Security Hub:
+1. Centralized view of your security state
+
+Amazon Detective:
+1. Investigate security issues (Using ML and graph analysis)
+
+Action that can be done only by the root account:
+1. Change account setting
+2. View certain tax invoices
+3. Close account
+4. Restore IAM User permissions
+5. Change or cancer AWS support plan
+6. Register oas a seller on AWS Marketplace
+7. Configure an Amazon S3 bucket to enable MFA
+8. Edit or delete an Amazon S3 bucket policy that includes an invalid VPC ID or VPC endpoint ID
+9. Sign up for GovCloud (US)
+
+## Section 18: Account Management, Billing & Support
+
+1. AWS Organizations
+    - Organize multiple AWS accounts
+    - Consolidated billing
+    - Service control policies (SCPs)
+
+2. 
