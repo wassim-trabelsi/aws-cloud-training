@@ -1084,6 +1084,145 @@ Action that can be done only by the root account:
 1. AWS Organizations
     - Organize multiple AWS accounts
     - Consolidated billing
-    - Service control policies (SCPs)
+    - Service control policies (SCPs):
+        - Define rules for your AWS accounts = (IAM for organizations)
+        - Use cases = Restrict access to certain services, Engorce PCI compliance, etc.
 
-2. 
+2. Consolidated Billing :
+    - Pay for all your AWS accounts with a single payment
+
+3. Aws Control Tower
+    - Create a secure, well-architected, multi-account AWS environment
+
+4. Support plans:
+    - Basic = Free
+    - Developer = 29$/month Buisness hour email
+    - Business = 100$/month 24/7 email, phone, chat (Infrastructure for additional fees)
+    - Enterprise = 300$/month 24/7 email, phone, chat (Infrastructure for additional fees) - Concierge support (for billing management) - For mission critical applications
+
+## Section 19: Advanced Identity (STS) 
+
+1. STS:
+    ( Guve temporary limited privileges credentials to users, applications, and services )
+
+2. Cognito:
+    - Identity for your Web and Mobile applications users
+
+3. AWS Directory Service:
+    - Managed Microsoft AD:
+        - AWS Managed Microsoft AD
+        - AD connector
+        - Simple AD
+
+4. Sigle Sign On
+    - Enable you to makes it easy to centrally manage access to multiple AWS accounts and business applications
+
+## Section 20: Other services
+
+1. WorkSpaces:
+    - Desktop in the cloud (DaaS) provision Windows desktops and applications
+
+2. AppStream 2.0:
+    - Stream desktop applications to any device
+
+3. Amazon Sumerian (VR and 3D)
+
+4. AWS IoT Core - Manage IoT
+
+5. Elastic Transcoder - Convert media files
+
+6. AppSync - Sync data between devices - Make use of GraphQL (mobile technology from Facebook)
+
+7. Amplify - Set of tools and services that helps you develop, deploy scalable full stack applications
+
+8. AWS Device Farm - Fully managed service that tests your web and mobile apps against desktop, tablet, and phone browsers
+
+9. AWS Backup - Backup and restore your AWS resources
+
+10. AWS Elastic Disaster Recovery (DRS) - Quickly and easily create a DR site to recover your applications and data
+
+11. AWS DataSync - Move data between on-premises storage and AWS storage (connect with TLS)
+
+12. AWS Application Discovery Service - Discover on-premises servers, virtual machines, and network dependencies
+
+13. Application Migration Service (MGN) - With or without agent
+
+14. AWS Fault Injection Simulator (FIS) - Test your applications' resilience to faults and errors
+
+15. AWS Step Functions - Coordinate the components of distributed applications workflow
+
+16. AWS Ground Station - Satellite data collection
+
+17. Amazon Pinpoint - Send targeted push notifications to your app users - (marketing, analytics, and engagement)
+
+
+## Section 21: AWS Architecting & Ecosystem
+
+1. Best practices:
+    - Stop guessing capacity
+    - Test systems
+    - Automate to make architectural experimentation easier
+    - Allow for evolutionary architectures
+    - Drive architectures using data
+    - Improve through game days
+
+2. Design principles:
+    - Scalability
+    - Disposable resouces
+    - Automation
+    - Loose Coupling
+    - Services, not Servers:
+
+3. Well architected framework
+    - **Operational excellence** (Run and monitor systems to deliver business value and to continually improve supporting processes and procedures):
+        - Operation as a code
+        - Annotate documentation
+        - Make frequent, small, reversible changes
+        - Anticipate failure
+        - Learn from all operational failures
+    - **Security** (Protect information, systems, and assets while delivering business value through risk assessments and mitigation strategies):
+        - Implement a strong identity foundation
+        - Enable traceability
+        - Apply security at all layers
+        - Automate security best practices
+        - Protect data in transit and at rest
+        - Keep people away from data
+        - Prepare for security events
+    - **Reliability** (Recover from infrastructure or service disruptions, dynamically acquire computing resources to meet demand, and mitigate disruptions such as misconfigurations or transient network issues):
+        - Test recovery procedures
+        - Automatically recover from failure
+        - Scale horizontally to increase aggregate system availability
+        - Stop guessing capacity
+        - Manage change in automation
+    - **Performance efficiency** (Use computing resources efficiently to meet system requirements, and maintain that efficiency as demand changes and technologies evolve):
+        - Dematerialize data
+        - Adopt a consumption model
+        - Measure overall efficiency
+        - Analyze and attribute expenditure
+        - Use serverless architectures
+    - **Cost optimization** (Run systems to deliver business value at the lowest price point):
+        - Adopt a consumption model
+        - Measure overall efficiency
+        - Analyze and attribute expenditure
+        - Use managed services
+        - Stop spending money on data center operations
+    - **Sustainability** (Build systems that are sustainable over the long term, and can adapt to environmental and business changes):
+        - Perform cost-effective disaster recovery
+        - Use renewable energy
+        - Design for disassembly
+        - Dispose of equipment responsibly
+
+4. AWS Well Architected Tool
+    - Aplly lens to your workloads
+        - Anwsers questions about your workloads and generates a report
+
+5. APN (AWS Partner Network)
+    - AWS Partner Network (APN) = Partner program
+    - AWS Competency Program = Specializations
+    - AWS Service Delivery Program = Service Delivery Partners
+    - AWS Managed Service Provider Program = Managed Service Providers
+    - AWS Consulting Partner Program = Consulting Partners
+    - AWS Technology Partner Program = Technology Partners
+    - AWS Startup Program = Startups
+    
+
